@@ -1,0 +1,56 @@
+<style>
+    h1{
+        margin-left: 21px;
+        
+    }
+
+    h2{
+        margin-left: 21px;
+        
+    }
+    .table{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 1046px;
+        margin-left: 21px;
+        border-radius: 5px; 
+    }
+
+    body{
+        margin-left: 10px;
+    }
+</style>
+
+<body>
+    <h1>
+        Total sum of all orders:
+    </h1>
+    <h2>{{Total}}</h2>
+
+    <table class="table">
+        <tr>
+            <td>Region</td>
+            <td>Total orders in region(US dollars)</td>
+            <td>Percentage from total</td>
+        </tr>
+
+        <tr *ngFor="let item of Reports">
+            <td>{{item.region}}</td>
+            <td>{{item.allCosts}}</td>
+            <td>{{item.percent}}</td>
+        </tr>
+    </table>
+        
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>Apartment id</td>
+            <td>Client id</td>
+        </tr>
+
+        <tr *ngFor="let item of Orders">
+            <td>{{item.id}}</td>
+            <td>{{item.apartmentId}}</td>
+            <td>{{item.clientId}}</td>
+        </tr>
+    </table>
+</body>

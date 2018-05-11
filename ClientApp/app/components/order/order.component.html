@@ -1,0 +1,179 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+    h1{
+        margin-top: 11px;
+        margin-bottom: 39px;
+    }
+    .thumbnail{
+        margin-left: 35px;
+        margin-right: 50px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .table{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 1020px;
+        margin-left: 21px;
+        border-radius: 5px; 
+    }
+
+    .crt{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .btn{
+        margin-top: 10px;
+    }
+
+    #second{
+        margin-top: 10px;
+    }
+
+    .form-control{
+        margin-top: 3px;
+    }
+
+    label{
+        margin-left: 2px;
+    }
+
+    .com{
+        margin-top: 6px;
+    }
+
+    .row{
+        margin-top: 20px;
+        
+    }
+
+    #sec{
+        margin-top: 10px;
+    }
+
+    #in{
+        margin-top: 10px;
+    }
+
+    body{
+        margin-left: 15px;
+    }
+
+    h3{ 
+        
+        color: red;
+    }
+</style>
+<body>
+    <div class="row" >
+        <div class="thumbnail col-sm-6 col-md-5" id="first">
+            <div>
+                <h1>Orders</h1>
+                <h3>{{errorMessage}}</h3>
+                <label for="comment">Make order:</label>
+                <input [(ngModel)]="apartmentId" class="form-control" placeholder="Apartment id"/>
+                <input [(ngModel)]="clientId" placeholder="Client id" class="form-control"/>
+
+                <button (click)="create()" class="btn btn-success">Create</button>
+            </div>
+
+            
+        </div>
+        <div class="thumbnail col-sm-6 col-md-5">
+            <div>
+                <input [(ngModel)]="id1" placeholder="ID of order" class="form-control"/>
+                <input [(ngModel)]="uApartmentId" placeholder="Apartment id" class="form-control"/>
+            
+                <button (click)="update()" class="btn btn-info">Update</button>
+            </div>
+            <label for="comment" id="second">Enter id of your order in order to delete:</label>
+            <input type="number" [(ngModel)]="id" placeholder="ID" class="form-control"/>
+            <button (click)="delete()" class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>Apartment id</td>
+            <td>Client id</td>
+        </tr>
+
+        <tr *ngFor="let item of Orders">
+            <td>{{item.id}}</td>
+            <td>{{item.apartmentId}}</td>
+            <td>{{item.clientId}}</td>
+        </tr>
+    </table>
+
+    <div class="row">
+        <div class="thumbnail col-sm-6 col-md-5">
+            <label for="comment">If you do not remember your id, enter your name and surname:</label>
+            <input [(ngModel)]="name" placeholder="Name(required)" class="form-control"/>
+            <input [(ngModel)]="surname" placeholder="Surname(required)" class="form-control"/>
+            <button (click)="getClientByNS()" class="btn btn-primary">Get profile</button>         
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Tel number</td>
+        </tr>
+
+        <tr *ngFor="let item of Clients">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.surName}}</td>
+            <td >{{item.telNumber}}</td>
+        </tr>
+    </table>
+
+    <div class="row">
+        <div class="thumbnail col-sm-6 col-md-5">
+            <input type="number" [(ngModel)]="idA" placeholder="ID" class="form-control"/>
+            <button (click)="getApartment()" class="btn btn-primary">Get Apartment</button>
+            
+            <select [(ngModel)]="region" class="form-control" id="sec">
+                <option value="">Choose region</option>
+                <option value="Медеуский">Медеуский</option>
+                <option value="Алмалинский">Алмалинский</option>
+                <option value="Бостандыкский">Бостандыкский</option>
+                <option value="Наурызбайский">Наурызбайский</option>
+                <option value="Алатауский">Алатауский</option>
+                <option value="Ауэзовский">Ауэзовский</option>
+                <option value="Жетысуский">Жетысуский</option>
+                <option value="Турксибский">Турксибский</option>
+            </select>
+            <button (click)="getAprtByReg()" class="btn btn-primary">Get by region</button>    
+        </div>
+
+        <div class="thumbnail col-sm-6 col-md-5">
+            <button (click)="getApartments()" class="btn btn-primary">Get All</button>
+            
+            <input [(ngModel)]="from" placeholder="from" class="form-control" id="in"/>
+            <input [(ngModel)]="to" placeholder="to" class="form-control"/>
+
+            <button (click)="getAprtByCost()" class="btn btn-primary">Get by cost</button>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <tr>
+            <td>ID</td>
+            <td>Cost</td>
+            <td>Rooms</td>
+            <td>Region</td>
+            <td>Description</td>
+        </tr>
+
+        <tr *ngFor="let item of Apartments">
+            <td>{{item.id}}</td>
+            <td>{{item.cost}}</td>
+            <td>{{item.rooms}}</td>
+            <td >{{item.regionId}}</td>
+            <td>{{item.description}}</td>
+        </tr>
+    </table>
+</body>

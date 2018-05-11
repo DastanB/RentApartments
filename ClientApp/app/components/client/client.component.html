@@ -1,0 +1,113 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+    .thumbnail{
+        margin-left: 35px;
+        margin-right: 50px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .table{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 1030px;
+        margin-left: 21px;
+        border-radius: 5px; 
+    }
+
+    .crt{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .btn{
+        margin-top: 10px;
+    }
+
+    #second{
+        margin-top: 10px;
+    }
+
+    .form-control{
+        margin-top: 3px;
+    }
+
+    label{
+        margin-left: 2px;
+    }
+
+    .com{
+        margin-top: 6px;
+    }
+
+    h1{
+        margin-bottom: 103px;
+    }
+
+    .but{
+        margin-bottom: 10px;
+    }
+
+    .row{
+        margin-top: 30px;
+    }
+
+    body{
+        margin-left: 15px;
+    }
+
+    h3{ 
+        
+        color: red;
+    }
+</style>
+
+<body>
+    <div class="row">
+        <div class="thumbnail col-sm-6 col-md-5">
+            <h1>Clients</h1>
+            <h3>{{errorMessage}}</h3>
+            <div class="crt">
+                <label for="comment">Register:</label>
+                <input [(ngModel)]="name" placeholder="Name" class="form-control"/>
+                <input [(ngModel)]="surName" placeholder="Surname" class="form-control"/>
+                <label for="comment" id="second">without '8' or '+7' including region code:</label>
+                <input [(ngModel)]="telNumber" placeholder="TelNumber" class="form-control"/>
+                
+
+                <button (click)="create()" class="btn btn-success">Create</button>
+            </div>
+        </div>
+        
+        
+        <div class="thumbnail col-sm-6 col-md-5">
+            <div>
+                <label for="comment" id="second">Update your profile:</label>
+                <input type="number" [(ngModel)]="id1" placeholder="ID" class="form-control"/>
+                <input [(ngModel)]="name1" placeholder="Name" class="form-control"v/>
+                <input [(ngModel)]="surName1" placeholder="Surname" class="form-control"/>
+                <label for="comment" id="second">without '8' or '+7' including region code:</label>
+                <input [(ngModel)]="telNumber1" placeholder="TelNumber" class="form-control"/>
+                <button (click)="update()" class="btn btn-info but">Update</button>
+            </div>
+            
+            <label for="comment">Enter your id in order to unregister:</label>
+            <input type="number" [(ngModel)]="id" placeholder="ID" class="form-control"/>
+            <button (click)="delete()" class="btn btn-danger but">Delete</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Tel number</td>
+        </tr>
+
+        <tr *ngFor="let item of Clients">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.surName}}</td>
+            <td >{{item.telNumber}}</td>
+        </tr>
+    </table>
+</body>
